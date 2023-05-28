@@ -50,6 +50,7 @@ model User {
   bio           String    @default("") @db.VarChar(255)
   accounts      Account[]
   sessions      Session[]
+  journeys      Journey[]
 }
 
 model VerificationToken {
@@ -58,4 +59,29 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Journey {
+  id          String  @id @default(cuid())
+  name        String
+  createdById String
+  createdBy   User    @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  quests      Quest[]
+
+  @@index([createdById])
+}
+
+model Quest {
+  id         String  @id @default(cuid())
+  journey_id String
+  journey    Journey @relation(fields: [journey_id], references: [id], onDelete: Cascade)
+  points     Int
+  action     Action?
+
+  @@index([journey_id])
+}
+
+enum Action {
+  EAT
+  SHOP
 }
