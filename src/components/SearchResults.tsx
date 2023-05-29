@@ -92,7 +92,7 @@ export default function SearchResults({
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="w-full max-h-[50vh] flex flex-col items-center bg-background1 p-2 border-b-2 border-background2"
+            className="w-full max-h-[50vh] flex flex-col items-center overflow-y-scroll bg-background1 p-2 border-b-2 border-background2"
           >
             {places.map((place) => (
               <QuestItem
