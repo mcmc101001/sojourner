@@ -48,16 +48,18 @@ export default function QuestItem({
 
   return (
     <div className="flex items-center justify-center w-full rounded-lg border-2 border-background2 bg-background1">
-      <div className="w-1/5 flex items-center justify-center p-2">
-        <Utensils className="h-full w-full text-background2" />
+      <div className="w-1/4 h-full flex flex-col items-center justify-center p-2">
+        <Utensils className="h-full w-full text-background2 p-1" />
+        <span className="text-background2 text-sm font-semibold whitespace-nowrap">
+          {points} points
+        </span>
       </div>
-      <div className="flex flex-col items-center justify-center w-4/5 p-2">
+      <div className="flex flex-col h-full items-center justify-between w-3/4 p-2">
         <span className="text-background2 text-justify">
           {name}
           {action && <Badge className="ml-2">{action}</Badge>}
         </span>
-        <span className="text-background2 font-semibold">{points} points</span>
-        <span className="text-background2 font-semibold">
+        <span className="mt-3 text-background2 font-semibold text-xs">
           x and x completed this quest!
         </span>
       </div>

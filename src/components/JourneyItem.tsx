@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "./ui/Button";
 import { ChevronRight } from "lucide-react";
-import { Quest, QuestOnJourney } from "@prisma/client";
 
 export default async function JourneyItem({
   journeyId,

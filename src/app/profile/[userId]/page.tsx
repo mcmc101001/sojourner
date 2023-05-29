@@ -42,7 +42,7 @@ export default async function Page({ params }: { params: { userId: string } }) {
             Following: 20
           </span>
         </div>
-        {isProfile && <UserPlus className="h-12 w-12 text-primary" />}
+        {isProfile || <UserPlus className="h-12 w-12 text-primary" />}
       </div>
       <div className="bg-background1 pt-2 px-3 pb-20">
         <span className="text-background2 font-semibold text-lg">

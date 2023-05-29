@@ -65,7 +65,7 @@ export default function SearchResults({
   return (
     <div className="w-full">
       <Input
-        className="w-full py-2 px-4 bg-primary rounded-full mb-4"
+        className="w-full py-2 px-4 bg-slate-300 opcaity-80 rounded-full mb-4"
         placeholder={"Add quest"}
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
@@ -85,13 +85,13 @@ export default function SearchResults({
             />
           )}
           <QuestItem
-            action={"PLAY"}
+            action={"SHOP"}
             addable={true}
             journeyId={journeyId}
             lat={123}
             lng={123}
-            name={"eat at rc4 dh"}
-            points={2}
+            name={"sample quest 2"}
+            points={5}
             userId={userId}
           />
         </div>
