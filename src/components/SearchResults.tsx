@@ -69,9 +69,10 @@ export default function SearchResults({
   // }, [searchInput]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(e.target.value);
+    let newSearchInput = e.target.value;
+    setSearchInput(newSearchInput);
     setFilteredQuests(
-      allQuests.filter((quest) => quest.name.includes(searchInput))
+      allQuests.filter((quest) => quest.name.includes(newSearchInput))
     );
   };
 
