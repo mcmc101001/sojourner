@@ -19,8 +19,9 @@ export default function SearchResults({
   userId: string;
 }) {
   let [searchInput, setSearchInput] = useState("");
-  
 
+  // Search radius
+  const rad = 4 * 1000
   // Latitude & Longitude
   let lat: number | undefined
   let lng: number | undefined
@@ -35,14 +36,17 @@ export default function SearchResults({
     lng = 103.8
   }
 
-  // Search radius
-  const rad = 4 * 1000
+  let places: Place[] = [{
+    lat: 123,
+    lng: 123,
+    name: "placeholder",
+  }]
 
-  let places: Place[] = []
+  let key: string = process.env.NEXTGOOGLE_PLACE_API_KEY!;
   useEffect(() => {
     async function updatePlaces() {
       const newPlaces: Place[] = []
-      const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${rad}$key=${process.env.NEXTGOOGLE_PLACE_API_KEY!}`
+    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${rad}&key=${key}`
       await fetch(url)
         .then(res => res.json())
         .then(json => {
@@ -57,9 +61,10 @@ export default function SearchResults({
           if (searchInput !== "") {
             newPlaces.filter(place => place.name.includes(searchInput))
           }
-          places = newPlaces
+          places = newPlaces.slice(5)
         })
     }
+    updatePlaces()
   }, [searchInput])
 
   return (
