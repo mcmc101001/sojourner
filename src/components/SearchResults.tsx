@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Input } from "./ui/Input";
 import QuestItem from "./QuestItem";
 import { Quest } from "@prisma/client";
+import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 type Place = {
   lat: number;
@@ -69,7 +71,7 @@ export default function SearchResults({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value);
     setFilteredQuests(
-      filteredQuests.filter((quest) => quest.name.includes(searchInput))
+      allQuests.filter((quest) => quest.name.includes(searchInput))
     );
   };
 
@@ -82,34 +84,41 @@ export default function SearchResults({
         onChange={(e) => handleChange(e)}
       />
       {searchInput !== "" && (
-        <div className="w-full h-full flex flex-col items-center bg-background1 p-2 border-b-2 border-background2">
-          {places.map((place) => (
-            <QuestItem
-              key={place.name}
-              action={"PLAY"}
-              addable={true}
-              journeyId={journeyId}
-              lat={place.lat}
-              lng={place.lng}
-              name={place.name}
-              points={2}
-              userId={userId}
-            />
-          ))}
-          {filteredQuests.map((quest) => (
-            <QuestItem
-              key={quest.id}
-              action={quest.action}
-              addable={true}
-              journeyId={journeyId}
-              lat={quest.lat}
-              lng={quest.lng}
-              name={quest.name}
-              points={quest.points}
-              userId={userId}
-            />
-          ))}
-        </div>
+        <AnimatePresence>
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="w-full h-full flex flex-col items-center bg-background1 p-2 border-b-2 border-background2"
+          >
+            {places.map((place) => (
+              <QuestItem
+                key={place.name}
+                action={"PLAY"}
+                addable={true}
+                journeyId={journeyId}
+                lat={place.lat}
+                lng={place.lng}
+                name={place.name}
+                points={2}
+                userId={userId}
+              />
+            ))}
+            {filteredQuests.map((quest) => (
+              <QuestItem
+                key={quest.id}
+                action={quest.action}
+                addable={true}
+                journeyId={journeyId}
+                lat={quest.lat}
+                lng={quest.lng}
+                name={quest.name}
+                points={quest.points}
+                userId={userId}
+              />
+            ))}
+          </motion.div>
+        </AnimatePresence>
       )}
     </div>
   );
