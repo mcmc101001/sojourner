@@ -6,8 +6,10 @@ import { ChevronRight } from "lucide-react";
 
 export default async function JourneyItem({
   journeyId,
+  showPicture = false,
 }: {
   journeyId: string;
+  showPicture?: boolean;
 }) {
   const journey = await prisma.journey.findUnique({
     where: {
@@ -21,26 +23,33 @@ export default async function JourneyItem({
   if (!journey) return <div>Not found</div>;
 
   return (
-    <div className="w-full p-2 max-h-max bg-background1 flex-col flex items-center rounded-lg">
+    <div className="w-full p-2 max-h-max bg-background1 flex-col flex items-center rounded-lg border-2 border-background2">
       <div className="flex mx-4">
-        <div className="flex flex-col items-center gap-y-0 w-1/4">
-          <Image
-            src={journey.createdBy.image!}
-            alt="profile pic"
-            width={80}
-            height={80}
-          />
-          <span className="text-sm hover:text-underline opacity-80">
-            <Link href={`/profile/${journey.createdById}`}>
-              {journey.createdBy.name}
-            </Link>
-          </span>
-        </div>
-        <div className="flex flex-col gap-y-2 w-3/4 px-2">
+        {showPicture && (
+          <div className="flex flex-col items-center gap-y-0 w-1/4">
+            <Image
+              src={journey.createdBy.image!}
+              alt="profile pic"
+              width={80}
+              height={80}
+            />
+            <span className="text-sm hover:text-underline opacity-80">
+              <Link href={`/profile/${journey.createdById}`}>
+                {journey.createdBy.name}
+              </Link>
+            </span>
+          </div>
+        )}
+        <div
+          className={
+            "flex flex-col gap-y-2 px-2" +
+            (showPicture ? "w-3/4" : "w-full justify-center")
+          }
+        >
           <h1 className="font-semibold text-2xl text-background2 text-center">
             {journey?.name}
           </h1>
-          <h2 className="font-semibold text-base opacity-90 text-background2">
+          <h2 className="font-semibold text-base text-center opacity-90 text-background2">
             Posted on:{" "}
             {journey.createdAt.toLocaleString("en-GB", {
               minute: "2-digit",
