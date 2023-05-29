@@ -23,7 +23,7 @@ export default async function JourneyItem({
   if (!journey) return <div>Not found</div>;
 
   return (
-    <div className="w-full p-2 max-h-max bg-background1 flex-col flex items-center rounded-lg border-2 border-background2">
+    <div className="w-full pt-2 max-h-max bg-background1 flex-col flex items-center rounded-lg border-2 border-background2">
       <div className="flex mx-4">
         {showPicture && (
           <div className="flex flex-col items-center gap-y-0 w-1/4">
@@ -62,15 +62,15 @@ export default async function JourneyItem({
         </div>
       </div>
 
-      <div className="w-4/5 h-full flex flex-col items-center bg-background2 mt-2 py-2 px-4">
+      <div className="w-full h-full flex flex-col items-center bg-background1 mt-2 py-2 px-4">
         <div className="flex w-full items-center justify-center gap-x-6">
-          <div className="flex flex-1 w-full flex-col bg-background1 rounded-xl py-2 px-4">
-            <span className="text-xl">90</span>
-            <span className="text-xs">points</span>
+          <div className="flex flex-1 w-full flex-col items-center bg-background2 rounded-xl py-2 px-4">
+            <span className="text-xl text-background1">90</span>
+            <span className="text-xs text-background1">points</span>
           </div>
-          <div className="flex flex-1 w-full flex-col bg-background1 rounded-xl py-2 px-4">
-            <span className="text-xl">5</span>
-            <span className="text-xs">quests</span>
+          <div className="flex flex-1 w-full flex-col items-center bg-background2 rounded-xl py-2 px-4">
+            <span className="text-xl text-background1">5</span>
+            <span className="text-xs text-background1">quests</span>
           </div>
         </div>
         <Link href={`/journey/${journeyId}`} className="mt-4 w-full">

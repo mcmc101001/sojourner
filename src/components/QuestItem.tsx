@@ -47,7 +47,7 @@ export default function QuestItem({
   };
 
   return (
-    <div className="flex items-center justify-center w-full bg-background1">
+    <div className="flex items-center justify-center w-full rounded-lg border-2 border-background2 bg-background1">
       <div className="w-1/5 flex items-center justify-center p-2">
         <Utensils className="h-full w-full text-background2" />
       </div>

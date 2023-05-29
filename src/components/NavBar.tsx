@@ -1,5 +1,5 @@
 import { getCurrentUser } from "@/lib/session";
-import { Plus, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import NewJourneyButton from "./newJourneyButton";

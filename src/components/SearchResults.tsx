@@ -14,10 +14,10 @@ export default function SearchResults({
   let [searchInput, setSearchInput] = useState("");
 
   return (
-    <>
+    <div className="w-full">
       <Input
-        className="w-[80vw] py-2 px-4 bg-primary rounded-full mb-4"
-        placeholder={"Search"}
+        className="w-full py-2 px-4 bg-primary rounded-full mb-4"
+        placeholder={"Add quest"}
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
       />
@@ -35,6 +35,6 @@ export default function SearchResults({
           />
         </div>
       )}
-    </>
+    </div>
   );
 }

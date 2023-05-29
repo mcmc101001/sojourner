@@ -1,5 +1,6 @@
 import QuestItem from "@/components/QuestItem";
 import SearchResults from "@/components/SearchResults";
+import Button from "@/components/ui/Button";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/session";
 
@@ -34,13 +35,15 @@ export default async function Page({
   });
 
   return (
-    <div className="w-full h-full flex flex-col items-center bg-background2 p-2">
-      <div className="text-center text-background1 text-lg mb-3">
+    <div className="w-full h-full flex flex-col items-center bg-background1 p-6">
+      <div className="text-center text-background2 text-xl font-bold mb-3">
         {journey?.name}
       </div>
       {isEditable && <SearchResults userId={user.id} journeyId={journey.id} />}
       <div className="flex flex-col gap-y-6">
-        <span className="text-background1 mt-2">Current Quests</span>
+        <span className="text-background2 mt-2 font-semibold">
+          Current Quests ({quests.length})
+        </span>
         {quests.map((quest) => {
           return (
             <QuestItem
@@ -56,6 +59,9 @@ export default async function Page({
             />
           );
         })}
+        <Button className="py-6 text-xl border-2 border-background2">
+          Publish
+        </Button>
       </div>
     </div>
   );
