@@ -35,9 +35,6 @@ export default function SearchResults({
     lng = 103.8;
   }
 
-  // Search radius
-  const rad = 4 * 1000;
-
   let places: Place[] = [];
   useEffect(() => {
     async function updatePlaces() {
@@ -61,6 +58,8 @@ export default function SearchResults({
           places = newPlaces;
         });
     }
+    updatePlaces();
+    console.log(places);
   }, [searchInput]);
 
   return (
@@ -75,6 +74,7 @@ export default function SearchResults({
         <div className="w-full h-full flex flex-col items-center bg-background1 p-2 border-b-2 border-background2">
           {places.map((place) => (
             <QuestItem
+              key={place.name}
               action={"PLAY"}
               addable={true}
               journeyId={journeyId}
@@ -91,7 +91,7 @@ export default function SearchResults({
             journeyId={journeyId}
             lat={123}
             lng={123}
-            name={"sample quest 2"}
+            name={"Quest!"}
             points={5}
             userId={userId}
           />
