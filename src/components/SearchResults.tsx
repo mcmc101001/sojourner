@@ -82,7 +82,7 @@ export default function SearchResults({
         onChange={(e) => handleChange(e)}
       />
       {searchInput !== "" && (
-        <div className="w-full h-[50vh] overflow-y-scroll flex flex-col items-center bg-background1 p-2 border-b-2 border-background2">
+        <div className="w-full h-full flex flex-col items-center bg-background1 p-2 border-b-2 border-background2">
           {places.map((place) => (
             <QuestItem
               key={place.name}
