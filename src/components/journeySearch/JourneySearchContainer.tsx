@@ -12,13 +12,19 @@ export default function JourneySearchContainer({ journeys }: SearchProps) {
   const [searchResults, setSearchResults] = useState(journeys);
 
   const handleSearch = (text: string) => {
-    setSearchResults(journeys.filter((journey) => journey.name.includes(text)));
+    if (text.length === 0) {
+      setSearchResults([]);
+    } else {
+      setSearchResults(
+        journeys.filter((journey) => journey.name.includes(text))
+      );
+    }
   };
 
   return (
     <>
       <input
-        className="w-11/12 m-8 p-4 "
+        className="w-11/12 m-8 p-4"
         placeholder="Search journeys..."
         onChange={(e) => handleSearch(e.target.value)}
       />

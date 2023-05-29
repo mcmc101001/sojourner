@@ -34,12 +34,20 @@ export default async function Page({
     return questOnJourney.quest;
   });
 
+  const allQuests = await prisma.quest.findMany();
+
   return (
     <div className="w-full h-full flex flex-col items-center bg-background1 p-6">
       <div className="text-center text-background2 text-xl font-bold mb-3">
         {journey?.name}
       </div>
-      {isEditable && <SearchResults userId={user.id} journeyId={journey.id} />}
+      {isEditable && (
+        <SearchResults
+          allQuests={allQuests}
+          userId={user.id}
+          journeyId={journey.id}
+        />
+      )}
       <div className="flex flex-col gap-y-6">
         <span className="text-background2 mt-2 font-semibold">
           Current Quests ({quests.length})
@@ -59,7 +67,7 @@ export default async function Page({
             />
           );
         })}
-        <Button className="py-6 text-xl border-2 border-background2">
+        <Button className="py-6 text-xl border-2 border-background2 mb-12">
           Publish
         </Button>
       </div>

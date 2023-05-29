@@ -21,7 +21,6 @@ export default function JourneySearchItem({
           />
           <span className="text-sm hover:text-underline opacity-80">
             <Link href={`/profile/${journey.createdById}`}>
-              testing
               {journey.createdBy.name}
             </Link>
           </span>

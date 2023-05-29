@@ -9,5 +9,9 @@ export default async function Page() {
     },
   });
 
-  return <JourneySearchContainer journeys={allJourneys} />;
+  return (
+    <div className="bg-background2 flex flex-col items-center">
+      <JourneySearchContainer journeys={allJourneys} />
+    </div>
+  );
 }

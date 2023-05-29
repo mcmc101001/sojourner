@@ -1,4 +1,6 @@
 import JourneyItem from "@/components/JourneyItem";
+import LoginButton from "@/components/LoginButton";
+import LogoutButton from "@/components/LogoutButton";
 import Button from "@/components/ui/Button";
 import { getCurrentUser } from "@/lib/session";
 import { ChevronRight } from "lucide-react";
@@ -59,6 +61,7 @@ export default async function Home() {
         <h1 className="text-background2 text-2xl font-bold">
           Start exploring!
         </h1>
+        <LogoutButton />
       </div>
       <Link href="/search" className="w-[90vw]">
         <Button size="huge" className="w-full text-xl">
