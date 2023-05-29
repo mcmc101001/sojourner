@@ -44,7 +44,7 @@ export default async function addJourney(
         createdById: userId,
       },
     });
-    res.status(200).json(Journalentry);
+    res.status(200).json({ Journalentry });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
   }

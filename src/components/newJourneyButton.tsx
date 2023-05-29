@@ -14,10 +14,14 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { addJourneyType } from "@/pages/api/addJourney";
+import { Plus } from "lucide-react";
+import { Journey } from "@prisma/client";
+import { redirect, useRouter } from "next/navigation";
 
 export default function NewJourneyButton({ userId }: { userId: string }) {
   let inputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState(false);
+  let router = useRouter();
 
   const handleClick = async () => {
     setIsLoading(true);
@@ -27,14 +31,18 @@ export default function NewJourneyButton({ userId }: { userId: string }) {
       return;
     }
     try {
-      let data: addJourneyType = {
+      let body: addJourneyType = {
         name: inputRef.current.value,
         userId: userId,
       };
-      await axios.post("/api/addJourney", data);
-      toast.success("Journey added!");
+      let { data } = await axios.post("/api/addJourney", body);
+      const journey = data.Journalentry as Journey;
       setIsLoading(false);
+
+      toast.success("Journey added!");
+      router.push(`/journey/${journey.id}`);
     } catch (error) {
+      console.log(error);
       setIsLoading(false);
       toast.error("Error adding journey");
     }
@@ -43,7 +51,7 @@ export default function NewJourneyButton({ userId }: { userId: string }) {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button>Add journey</Button>
+        <Plus />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

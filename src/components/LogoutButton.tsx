@@ -22,7 +22,7 @@ export default function LogoutButton() {
           setIsSigningOut(false);
         }
       }}
-      className="bg-primary text-background1 rounded-full"
+      className="bg-primary text-background1 rounded-full mb-10"
     >
       Logout
       {isSigningOut ? (

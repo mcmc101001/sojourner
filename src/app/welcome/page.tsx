@@ -1,4 +1,5 @@
 import JourneyItem from "@/components/JourneyItem";
+import LogoutButton from "@/components/LogoutButton";
 import NewJourneyButton from "@/components/newJourneyButton";
 import { getCurrentUser } from "@/lib/session";
 import { redirect } from "next/navigation";
