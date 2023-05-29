@@ -72,7 +72,9 @@ export default function SearchResults({
     let newSearchInput = e.target.value;
     setSearchInput(newSearchInput);
     setFilteredQuests(
-      allQuests.filter((quest) => quest.name.includes(newSearchInput))
+      allQuests.filter((quest) =>
+        quest.name.toLowerCase().includes(newSearchInput)
+      )
     );
   };
 

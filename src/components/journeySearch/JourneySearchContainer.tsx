@@ -16,7 +16,7 @@ export default function JourneySearchContainer({ journeys }: SearchProps) {
       setSearchResults([]);
     } else {
       setSearchResults(
-        journeys.filter((journey) => journey.name.includes(text))
+        journeys.filter((journey) => journey.name.toLowerCase().includes(text))
       );
     }
   };
