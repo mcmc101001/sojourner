@@ -76,6 +76,7 @@ export default async function Home() {
           Current Journey!
         </h1>
         <div className="p-2">
+          {/* @ts-expect-error Server comp */}
           <JourneyItem
             showPicture={true}
             journeyId="cli7j6c9v00026u5kno1u0b69"

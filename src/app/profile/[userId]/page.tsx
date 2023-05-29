@@ -53,6 +53,7 @@ export default async function Page({ params }: { params: { userId: string } }) {
             return (
               <ul key={journey.id}>
                 <li className="mt-2 px-2">
+                  {/* @ts-expect-error Server comp */}
                   <JourneyItem journeyId={journey.id} />
                 </li>
               </ul>

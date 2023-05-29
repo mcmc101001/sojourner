@@ -23,6 +23,7 @@ export default async function RootLayout({
         <Toaster />
         <div className="relative">
           {children}
+          {/* @ts-expect-error Server comp */}
           {user && <NavBar />}
         </div>
       </body>

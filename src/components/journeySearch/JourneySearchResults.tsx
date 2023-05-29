@@ -17,7 +17,7 @@ export default function JourneySearchResults({
           <ul key="Journey Search List">
             {searchResults.map((journey) => {
               return (
-                <li>
+                <li key={journey.id}>
                   <JourneySearchItem journey={journey} />
                 </li>
               );
