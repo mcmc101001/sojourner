@@ -3,12 +3,12 @@
 import { useRef, useEffect, useState } from "react";
 import { Input } from "./ui/Input";
 import QuestItem from "./QuestItem";
-import { number } from "zod";
 
 type Place = {
   lat: number,
   lng: number,
   name: string,
+  action?: "PLAY" | "SHOP"
 }
 
 export default function SearchResults({
@@ -20,6 +20,29 @@ export default function SearchResults({
 }) {
   let [searchInput, setSearchInput] = useState("");
 
+  let places: Place[] = [
+  {
+    lat: 123,
+    lng: 123,
+    name: "placeholder",
+  },
+
+  {
+    lat: 123,
+    lng: 123,
+    name: "sample quest 2",
+    action: "SHOP"
+  },
+
+  {
+    lat: 123,
+    lng: 123,
+    name: "test",
+  },
+
+]
+
+  /*
   // Search radius
   const rad = 4 * 1000
   // Latitude & Longitude
@@ -36,17 +59,11 @@ export default function SearchResults({
     lng = 103.8
   }
 
-  let places: Place[] = [{
-    lat: 123,
-    lng: 123,
-    name: "placeholder",
-  }]
-
-  let key: string = process.env.NEXTGOOGLE_PLACE_API_KEY!;
+  let key: string = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY!;
   useEffect(() => {
     async function updatePlaces() {
       const newPlaces: Place[] = []
-    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${rad}&key=${key}`
+    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat}%2C${lng}&radius=${rad}&key=${key}`
       await fetch(url)
         .then(res => res.json())
         .then(json => {
@@ -66,6 +83,7 @@ export default function SearchResults({
     }
     updatePlaces()
   }, [searchInput])
+  */
 
   return (
     <div className="w-full">
@@ -77,9 +95,11 @@ export default function SearchResults({
       />
       {searchInput !== "" && (
         <div className="w-full h-full flex flex-col items-center bg-background1 p-2 border-b-2 border-background2">
-          {places.map(place =>
+          {places
+          .filter(place => place.name.includes(searchInput))
+          .map(place =>
             <QuestItem
-              action={"PLAY"}
+              action={place.action ? place.action : "PLAY"}
               addable={true}
               journeyId={journeyId}
               lat={place.lat}
@@ -89,16 +109,6 @@ export default function SearchResults({
               userId={userId}
             />
           )}
-          <QuestItem
-            action={"SHOP"}
-            addable={true}
-            journeyId={journeyId}
-            lat={123}
-            lng={123}
-            name={"sample quest 2"}
-            points={5}
-            userId={userId}
-          />
         </div>
       )}
     </div>
