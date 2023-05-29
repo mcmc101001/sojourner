@@ -10,7 +10,8 @@ export default function LoginButton() {
   const [isSigningIn, setIsSigningIn] = useState(false);
   return (
     <Button
-      variant="ghost"
+      variant="default"
+      size="huge"
       onClick={async () => {
         setIsSigningIn(true);
         try {
@@ -21,6 +22,7 @@ export default function LoginButton() {
           setIsSigningIn(false);
         }
       }}
+      className="bg-primary text-background1 rounded-full"
     >
       Login
       {isSigningIn ? (

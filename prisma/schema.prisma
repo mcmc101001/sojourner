@@ -42,15 +42,20 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  bio           String    @default("") @db.VarChar(255)
-  accounts      Account[]
-  sessions      Session[]
-  journeys      Journey[]
+  id                String             @id @default(cuid())
+  name              String?
+  email             String?            @unique
+  emailVerified     DateTime?
+  image             String?
+  bio               String             @default("") @db.VarChar(255)
+  accounts          Account[]
+  sessions          Session[]
+  createdJourneys   Journey[]
+  followedJourneys  FollowedJourney[]
+  completedJourneys CompletedJourney[]
+  completedQuests   CompletedQuest[]
+  currentJourney    CurrentJourney?
+  points            Int                @default(0)
 }
 
 model VerificationToken {
@@ -62,26 +67,79 @@ model VerificationToken {
 }
 
 model Journey {
-  id          String  @id @default(cuid())
+  id          String           @id @default(cuid())
   name        String
+  createdAt   DateTime         @default(now())
   createdById String
-  createdBy   User    @relation(fields: [createdById], references: [id], onDelete: Cascade)
-  quests      Quest[]
+  createdBy   User             @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  quests      QuestOnJourney[]
 
   @@index([createdById])
 }
 
-model Quest {
-  id         String  @id @default(cuid())
-  journey_id String
-  journey    Journey @relation(fields: [journey_id], references: [id], onDelete: Cascade)
-  points     Int
-  action     Action?
+model FollowedJourney {
+  journeyId   String
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  completedAt DateTime @default(now())
 
-  @@index([journey_id])
+  @@unique([journeyId, userId])
+  @@index([userId])
+}
+
+model CompletedJourney {
+  journeyId   String
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  completedAt DateTime @default(now())
+
+  @@unique([journeyId, userId])
+  @@index([userId])
+}
+
+model CurrentJourney {
+  journeyId String
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  startedAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Quest {
+  id      String           @id @default(cuid())
+  name    String
+  points  Int
+  lat     Float
+  lng     Float
+  action  Action?
+  journey QuestOnJourney[]
+
+  @@unique([lat, lng])
+}
+
+model QuestOnJourney {
+  questId   String
+  quest     Quest   @relation(fields: [questId], references: [id], onDelete: Cascade)
+  journeyId String
+  journey   Journey @relation(fields: [journeyId], references: [id], onDelete: Cascade)
+
+  @@unique([questId, journeyId])
+  @@index([journeyId])
+}
+
+model CompletedQuest {
+  quest_id    String
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  completedAt DateTime @default(now())
+
+  @@unique([quest_id, userId])
+  @@index([userId])
 }
 
 enum Action {
   EAT
   SHOP
+  PLAY
 }

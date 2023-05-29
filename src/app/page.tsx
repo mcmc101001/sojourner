@@ -1,23 +1,21 @@
-import LoginButton from "@/components/Loginbutton";
-import LogoutButton from "@/components/LogoutButton";
+import LoginButton from "@/components/LoginButton";
 import { getCurrentUser } from "@/lib/session";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
   let user = await getCurrentUser();
 
+  if (user) {
+    redirect("/welcome");
+  }
+
   return (
-    <div className="w-full h-[100vh] flex flex-col items-center justify-center bg-teal text-2xl text-beige">
-      {user ? (
-        <>
-          <h1>{user.name}</h1>
-          <LogoutButton />
-        </>
-      ) : (
-        <>
-          <h1>Not logged in</h1>
-          <LoginButton />
-        </>
-      )}
+    <div className="w-full h-[100vh] flex flex-col gap-y-6 items-center justify-center bg-background2">
+      <div>LOGO PLACEHOLDER</div>
+      <div className="w-[80vw] flex items-center justify-center text-center text-3xl text-background1">
+        <h1>Ready for your first adventure?</h1>
+      </div>
+      <LoginButton />
     </div>
   );
 }

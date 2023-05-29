@@ -10,7 +10,8 @@ export default function LogoutButton() {
   const [isSigningOut, setIsSigningOut] = useState(false);
   return (
     <Button
-      variant="ghost"
+      variant="default"
+      size="huge"
       onClick={async () => {
         setIsSigningOut(true);
         try {
@@ -21,6 +22,7 @@ export default function LogoutButton() {
           setIsSigningOut(false);
         }
       }}
+      className="bg-primary text-background1 rounded-full"
     >
       Logout
       {isSigningOut ? (
