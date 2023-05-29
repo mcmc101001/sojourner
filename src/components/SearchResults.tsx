@@ -12,53 +12,53 @@ export default function SearchResults({
   userId: string;
 }) {
   let [searchInput, setSearchInput] = useState("");
-  const scriptStatus = useScript(
-    `https://maps.googleapis.com/maps/api/js?key=${process.env
-      .NEXTGOOGLE_PLACE_API_KEY!}&libraries=places`
-  );
+  // const scriptStatus = useScript(
+  //   `https://maps.googleapis.com/maps/api/js?key=${process.env
+  //     .NEXTGOOGLE_PLACE_API_KEY!}&libraries=places`
+  // );
 
-  const autoCompleteRef = useRef<google.maps.places.Autocomplete>();
-  const inputRef = useRef<HTMLInputElement>();
-  const options = {
-    componentRestrictions: { country: "ng" },
-    fields: ["address_components", "geometry", "icon", "name"],
-    types: ["establishment"],
-  };
-  useEffect(() => {
-    autoCompleteRef.current = new window.google.maps.places.Autocomplete(
-      inputRef.current!,
-      options
-    );
-  }, []);
+  // const autoCompleteRef = useRef<google.maps.places.Autocomplete>();
+  // const inputRef = useRef<HTMLInputElement>();
+  // const options = {
+  //   componentRestrictions: { country: "ng" },
+  //   fields: ["address_components", "geometry", "icon", "name"],
+  //   types: ["establishment"],
+  // };
+  // useEffect(() => {
+  //   autoCompleteRef.current = new window.google.maps.places.Autocomplete(
+  //     inputRef.current!,
+  //     options
+  //   );
+  // }, []);
 
   return (
     <div className="w-full">
       <Input
-        className="w-full py-2 px-4 bg-primary rounded-full mb-4"
+        className="w-full py-2 px-4 bg-slate-300 opcaity-80 rounded-full mb-4"
         placeholder={"Add quest"}
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
       />
       {searchInput !== "" && (
-        <div className="w-full h-full flex flex-col items-center bg-background1 p-2 border-b-2 border-background2">
+        <div className="w-full h-full flex flex-col items-center bg-background1 gap-y-2 pb-2 border-b-2 border-background2">
           <QuestItem
             action={"PLAY"}
             addable={true}
             journeyId={journeyId}
             lat={123}
             lng={123}
-            name={"eat at rc4 dh"}
+            name={"sample quest 1"}
             points={2}
             userId={userId}
           />
           <QuestItem
-            action={"PLAY"}
+            action={"SHOP"}
             addable={true}
             journeyId={journeyId}
             lat={123}
             lng={123}
-            name={"eat at rc4 dh"}
-            points={2}
+            name={"sample quest 2"}
+            points={5}
             userId={userId}
           />
         </div>
