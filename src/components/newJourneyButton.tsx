@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation";
 export default function NewJourneyButton({ userId }: { userId: string }) {
   let inputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [open, setOpen] = useState(false);
   let router = useRouter();
 
   const handleClick = async () => {
@@ -38,6 +39,7 @@ export default function NewJourneyButton({ userId }: { userId: string }) {
       let { data } = await axios.post("/api/addJourney", body);
       const journey = data.Journalentry as Journey;
       setIsLoading(false);
+      setOpen(false);
 
       toast.success("Journey added!");
       router.push(`/journey/${journey.id}`);
@@ -49,7 +51,7 @@ export default function NewJourneyButton({ userId }: { userId: string }) {
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
         <Plus />
       </DialogTrigger>
@@ -59,7 +61,7 @@ export default function NewJourneyButton({ userId }: { userId: string }) {
         </DialogHeader>
         <Input ref={inputRef} placeholder="Journey name" />
         <Button
-          disabled={isLoading}
+          isLoading={isLoading}
           onClick={() => handleClick()}
           className="bg-background2"
         >
