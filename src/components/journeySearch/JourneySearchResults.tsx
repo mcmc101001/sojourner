@@ -1,10 +1,21 @@
-import { Journey, User } from "@prisma/client";
+import { QuestOnJourney, User } from "@prisma/client";
 import JourneySearchItem from "./JourneySearchItem";
 
 export default function JourneySearchResults({
   searchResults,
 }: {
-  searchResults: (Journey & { createdBy: User })[];
+  searchResults: {
+    questPoints: number;
+    id: string;
+    name: string;
+    createdAt: Date;
+    createdById: string;
+    _count: {
+      quests: number;
+    };
+    createdBy: User;
+    quests: QuestOnJourney[];
+  }[];
 }) {
   return (
     <>

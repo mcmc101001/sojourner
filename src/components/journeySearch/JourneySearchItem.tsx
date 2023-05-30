@@ -1,4 +1,4 @@
-import { Journey, User } from "@prisma/client";
+import { Journey, QuestOnJourney, User } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../ui/Button";
@@ -7,7 +7,18 @@ import { ChevronRight } from "lucide-react";
 export default function JourneySearchItem({
   journey,
 }: {
-  journey: Journey & { createdBy: User };
+  journey: {
+    questPoints: number;
+    id: string;
+    name: string;
+    createdAt: Date;
+    createdById: string;
+    _count: {
+      quests: number;
+    };
+    createdBy: User;
+    quests: QuestOnJourney[];
+  };
 }) {
   return (
     <div className="w-full p-2 max-h-max bg-background1 flex-col flex items-center rounded-lg">
@@ -45,11 +56,11 @@ export default function JourneySearchItem({
       <div className="w-4/5 h-full flex flex-col items-center bg-background2 mt-2 py-2 px-4">
         <div className="flex w-full items-center justify-center gap-x-6">
           <div className="flex flex-1 w-full flex-col bg-background1 rounded-xl py-2 px-4">
-            <span className="text-xl">90</span>
+            <span className="text-xl">{journey.questPoints}</span>
             <span className="text-xs">points</span>
           </div>
           <div className="flex flex-1 w-full flex-col bg-background1 rounded-xl py-2 px-4">
-            <span className="text-xl">5</span>
+            <span className="text-xl">{journey._count.quests}</span>
             <span className="text-xs">quests</span>
           </div>
         </div>

@@ -1,11 +1,22 @@
 "use client";
 
-import { Journey, User } from "@prisma/client";
+import { QuestOnJourney, User } from "@prisma/client";
 import JourneySearchResults from "./JourneySearchResults";
 import { useState } from "react";
 
 type SearchProps = {
-  journeys: (Journey & { createdBy: User })[];
+  journeys: {
+    questPoints: number;
+    id: string;
+    name: string;
+    createdAt: Date;
+    createdById: string;
+    _count: {
+      quests: number;
+    };
+    createdBy: User;
+    quests: QuestOnJourney[];
+  }[];
 };
 
 export default function JourneySearchContainer({ journeys }: SearchProps) {

@@ -3,7 +3,6 @@ import SearchResults from "@/components/SearchResults";
 import Button from "@/components/ui/Button";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/session";
-import { all } from "axios";
 
 export default async function Page({
   params,
@@ -36,7 +35,6 @@ export default async function Page({
   });
 
   const allQuests = await prisma.quest.findMany();
-  console.log(allQuests);
 
   return (
     <div className="w-full h-full flex flex-col items-center bg-background1 p-6">
