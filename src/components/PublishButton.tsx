@@ -1,3 +1,5 @@
+"use client";
+
 import { toast } from "react-hot-toast";
 import Button from "./ui/Button";
 import { redirect } from "next/navigation";
