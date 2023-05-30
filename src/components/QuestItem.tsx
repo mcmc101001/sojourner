@@ -1,11 +1,12 @@
 "use client";
 
-import { Plus, Utensils } from "lucide-react";
+import { Loader2, Plus, Utensils } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Action } from "@prisma/client";
 import { addQuestType } from "@/pages/api/addQuest";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function QuestItem({
   journeyId,
@@ -27,6 +28,7 @@ export default function QuestItem({
   userId: string;
 }) {
   let router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async () => {
     let data: addQuestType = {
@@ -63,9 +65,15 @@ export default function QuestItem({
           x and x completed this quest!
         </span>
       </div>
-      {addable && (
-        <Plus className="w-14 text-background2" onClick={() => handleClick()} />
-      )}
+      {addable &&
+        (isLoading ? (
+          <Loader2 className="animate-none w-14" />
+        ) : (
+          <Plus
+            className="w-14 text-background2"
+            onClick={() => handleClick()}
+          />
+        ))}
     </div>
   );
 }

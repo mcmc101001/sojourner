@@ -19,6 +19,12 @@ export default async function Page({
     },
   });
 
+  const userLatestJourney = await prisma.journey.findFirst({
+    where: {
+      createdById: user?.id,
+    },
+  });
+
   if (!journey) return <div>Not found</div>;
 
   const isEditable = journey?.createdById === user?.id;
@@ -58,11 +64,13 @@ export default async function Page({
           return (
             <QuestItem
               key={quest.id}
-              journeyId={params.journeyId}
+              journeyId={
+                userLatestJourney ? userLatestJourney.id : params.journeyId
+              }
               name={quest.name}
               points={quest.points}
               action={quest?.action}
-              addable={false}
+              addable={!isEditable}
               lat={quest.lat}
               lng={quest.lng}
               userId={user?.id!}
