@@ -16,7 +16,7 @@ import { toast } from "react-hot-toast";
 import { addJourneyType } from "@/pages/api/addJourney";
 import { Plus } from "lucide-react";
 import { Journey } from "@prisma/client";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function NewJourneyButton({ userId }: { userId: string }) {
   let inputRef = useRef<HTMLInputElement>(null);

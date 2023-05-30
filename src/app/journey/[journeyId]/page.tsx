@@ -1,3 +1,4 @@
+import PublishButton from "@/components/PublishButton";
 import QuestItem from "@/components/QuestItem";
 import SearchResults from "@/components/SearchResults";
 import Button from "@/components/ui/Button";
@@ -77,17 +78,7 @@ export default async function Page({
             />
           );
         })}
-        {isEditable && (
-          <Button
-            className="py-6 text-xl border-2 border-background2 mb-12"
-            onClick={() => {
-              toast.success("Journey published!");
-              redirect("/welcome");
-            }}
-          >
-            Publish
-          </Button>
-        )}
+        {isEditable && <PublishButton />}
       </div>
     </div>
   );
