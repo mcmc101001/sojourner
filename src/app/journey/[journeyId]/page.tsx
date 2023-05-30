@@ -71,7 +71,7 @@ export default async function Page({
               name={quest.name}
               points={quest.points}
               action={quest?.action}
-              addable={!isEditable}
+              addable={!!userLatestJourney && !isEditable}
               lat={quest.lat}
               lng={quest.lng}
               userId={user?.id!}
