@@ -31,6 +31,7 @@ export default function QuestItem({
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async () => {
+    setIsLoading(true);
     let data: addQuestType = {
       userId: userId,
       journeyId: journeyId,
@@ -45,6 +46,7 @@ export default function QuestItem({
     } catch (error) {
       console.log(error);
     }
+    setIsLoading(false);
     router.refresh();
   };
 

@@ -58,16 +58,14 @@ export default function NewJourneyButton({ userId }: { userId: string }) {
           <DialogTitle>Add new journey</DialogTitle>
         </DialogHeader>
         <Input ref={inputRef} placeholder="Journey name" />
-        <DialogPrimitive.Close>
-          <Button
-            disabled={isLoading}
-            onClick={() => handleClick()}
-            className="bg-background2"
-          >
-            {" "}
-            Add new journey{" "}
-          </Button>
-        </DialogPrimitive.Close>
+        <Button
+          disabled={isLoading}
+          onClick={() => handleClick()}
+          className="bg-background2"
+        >
+          {" "}
+          Add new journey{" "}
+        </Button>
       </DialogContent>
     </Dialog>
   );
