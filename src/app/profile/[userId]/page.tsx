@@ -25,7 +25,7 @@ export default async function Page({ params }: { params: { userId: string } }) {
   const isProfile = currentUser.id === profileUser.id;
 
   return (
-    <div className="w-full h-full bg-background2 flex flex-col items-center">
+    <div className="w-full min-h-[100vh] h-full bg-background2 flex flex-col items-center">
       <div className="w-full h-full flex items-center pt-4 px-4">
         <Image
           src={profileUser.image!}

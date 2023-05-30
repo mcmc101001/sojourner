@@ -73,7 +73,7 @@ export default async function Home() {
       </Link>
       <div className="mt-4 w-[90vw] mx-2 max-h-min flex flex-col items-center text-center text-xl rounded-xl bg-background2">
         <h1 className="text-background1 font-semibold flex mt-4">
-          Current Journey!
+          Featured Journey!
         </h1>
         <div className="p-2">
           {/* @ts-expect-error Server comp */}

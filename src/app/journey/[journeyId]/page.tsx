@@ -3,6 +3,8 @@ import SearchResults from "@/components/SearchResults";
 import Button from "@/components/ui/Button";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/session";
+import { redirect } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 export default async function Page({
   params,
@@ -37,7 +39,7 @@ export default async function Page({
   const allQuests = await prisma.quest.findMany();
 
   return (
-    <div className="w-full h-full flex flex-col items-center bg-background1 p-6">
+    <div className="w-full h-full min-h-[100vh] flex flex-col items-center bg-background1 p-6">
       <div className="text-center text-background2 text-xl font-bold mb-3">
         {journey?.name}
       </div>
@@ -67,9 +69,17 @@ export default async function Page({
             />
           );
         })}
-        <Button className="py-6 text-xl border-2 border-background2 mb-12">
-          Publish
-        </Button>
+        {isEditable && (
+          <Button
+            className="py-6 text-xl border-2 border-background2 mb-12"
+            onClick={() => {
+              toast.success("Journey published!");
+              redirect("/welcome");
+            }}
+          >
+            Publish
+          </Button>
+        )}
       </div>
     </div>
   );

@@ -35,7 +35,7 @@ export default async function Page() {
   );
 
   return (
-    <div className="bg-background2 flex flex-col items-center">
+    <div className="bg-background2 min-h-[100vh] flex flex-col items-center">
       <JourneySearchContainer journeys={allJourneysWithPoints} />
     </div>
   );
