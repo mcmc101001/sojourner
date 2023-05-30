@@ -21,26 +21,26 @@ export default function JourneySearchItem({
   };
 }) {
   return (
-    <div className="w-full p-2 max-h-max bg-background1 flex-col flex items-center rounded-lg">
+    <div className="w-full pt-2 bg-background1 flex-col flex items-center rounded-xl border-2 border-background2">
       <div className="flex mx-4">
-        <div className="flex flex-col items-center gap-y-0 w-1/4">
+        <div className="flex flex-col items-center gap-y-0 w-1/3">
           <Image
             src={journey.createdBy.image!}
             alt="profile pic"
             width={80}
             height={80}
           />
-          <span className="text-sm hover:text-underline opacity-80">
+          <span className="text-sm hover:text-underline opacity-80 whitespace-nowrap mt-1">
             <Link href={`/profile/${journey.createdById}`}>
               {journey.createdBy.name}
             </Link>
           </span>
         </div>
-        <div className="flex flex-col gap-y-2 w-3/4 px-2">
-          <h1 className="font-semibold text-2xl text-background2 text-center">
+        <div className={"flex flex-col gap-y-2 px-2 w-2/3"}>
+          <h1 className="font-semibold text-xl text-background2 text-center">
             {journey?.name}
           </h1>
-          <h2 className="font-semibold text-base opacity-90 text-background2">
+          <h2 className="font-semibold text-sm text-center opacity-90 text-background2">
             Posted on:{" "}
             {journey.createdAt.toLocaleString("en-GB", {
               minute: "2-digit",
@@ -53,18 +53,22 @@ export default function JourneySearchItem({
         </div>
       </div>
 
-      <div className="w-4/5 h-full flex flex-col items-center bg-background2 mt-2 py-2 px-4">
+      <div className="w-full h-full flex flex-col items-center bg-background1 mt-1 py-2 px-4">
         <div className="flex w-full items-center justify-center gap-x-6">
-          <div className="flex flex-1 w-full flex-col bg-background1 rounded-xl py-2 px-4">
-            <span className="text-xl">{journey.questPoints}</span>
-            <span className="text-xs">points</span>
+          <div className="flex flex-1 w-full flex-col items-center bg-background2 rounded-xl py-2 px-4">
+            <span className="text-xl text-background1">
+              {journey.questPoints}
+            </span>
+            <span className="text-xs text-background1">points</span>
           </div>
-          <div className="flex flex-1 w-full flex-col bg-background1 rounded-xl py-2 px-4">
-            <span className="text-xl">{journey._count.quests}</span>
-            <span className="text-xs">quests</span>
+          <div className="flex flex-1 w-full flex-col items-center bg-background2 rounded-xl py-2 px-4">
+            <span className="text-xl text-background1">
+              {journey._count.quests}
+            </span>
+            <span className="text-xs text-background1">quests</span>
           </div>
         </div>
-        <Link href={`/journey/${journey.id}`} className="mt-4 w-full">
+        <Link href={`/journey/${journey.id}`} className="mt-2 w-full">
           <Button size="huge" className="w-full">
             Browse Journey{" "}
             <span className="">

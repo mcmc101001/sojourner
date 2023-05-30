@@ -24,11 +24,13 @@ export default function JourneySearchResults({
       )}
       {searchResults.length > 0 && (
         <>
-          <p className="ml-4">Found {searchResults.length} journeys:</p>
+          <p className="ml-4 text-background1 text-xl font-semibold">
+            Found {searchResults.length} journeys:
+          </p>
           <ul key="Journey Search List" className="mb-12">
             {searchResults.map((journey) => {
               return (
-                <li key={journey.id} className="mt-2">
+                <li key={journey.id} className="mt-2 mx-2">
                   <JourneySearchItem journey={journey} />
                 </li>
               );
