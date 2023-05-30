@@ -69,7 +69,7 @@ export default function QuestItem({
       </div>
       {addable &&
         (isLoading ? (
-          <Loader2 className="animate-none w-14" />
+          <Loader2 className="animate-spin w-14" />
         ) : (
           <Plus
             className="w-14 text-background2"
